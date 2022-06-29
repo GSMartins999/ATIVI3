@@ -6,25 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
     public function up()
     {
-        Schema::create('mensagems', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('titulo');
-            $table->text('mensagems');
-            $table->timestamps();
+        Schema::create('mensagems', function (Blueprint $table){
+            $table->id ();
+            $table->foreignId('user_id')->constrained()
+                ->onDelte('cascade')->onUpdate('cascade');
+                $table->string('titulo');
+                $table->text('mensagem');
+                $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
-     *
+     * reverse the migration.
+     * 
      * @return void
      */
     public function down()

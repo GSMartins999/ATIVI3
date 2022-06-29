@@ -6,12 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
-    public function up()
+    public function up ()
     {
         Schema::create('topicos', function (Blueprint $table) {
             $table->id();
@@ -21,8 +22,8 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
+     * reverse the migration.
+     * 
      * @return void
      */
     public function down()
