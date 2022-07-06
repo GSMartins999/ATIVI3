@@ -18,8 +18,22 @@
     <tbody>
         @foreach($topicos as $topico)
         <tr>
-        
-        </tr>
+            <td>{{$topico->topico}}</td>
+            <td>
+                <a href="{{route?('topico.edit', $topico->id)}}" class="button">
+                    Editar
+                </a>
+            </td>
+            <td>
+                <form method="POST" action="{{route('topico.destroy',$topico->id)}}" onsubmit="return confirm('tem certeza?');">
+                @csrf
+                @method('DELETE')
+                <button type="subimit" class="button">
+                    Remover
+                </button>
+                </form>
+            </td>
+         </tr>
         @endforeach
     </tbody>
 </table>

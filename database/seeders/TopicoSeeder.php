@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Topics;
+use App\Models\Topico;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

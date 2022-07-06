@@ -17,9 +17,9 @@ return new class extends Migration
         Schema::create('mensagem_topicos', function (Blueprint $table){
             $table->id ();
             $table->foreignId('mensagem_id')->constrained()
-                ->onDelte('cascade')->onUpdate('cascade');
+                ->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('topico_id')->constrained()
-                ->onDelte('cascade')->onUpdate('cascade');
+                ->onUpdate('cascade')->onDelete('cascade');
                 $table->unique(['mensagem_id', 'topico_id']);
                 $table->timestamps();
         });
