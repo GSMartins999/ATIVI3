@@ -1,9 +1,8 @@
 @extends('restrict.layout')
 
 @section('content')
-
 <div>
-    <a href="{{ url('mensagem/create')}}" class="button"> Adicionar </a>
+    <a href="{{url('mensagem/create')}}" class="button">Adicionar</a>
 </div>
 <table>
     <thead>
@@ -15,27 +14,27 @@
             <th>Editar</th>
             <th>Remover</th>
         </tr>
-    </thead>
-    <tbody>
+    <thead>
+    <tbdody>
         @foreach($mensagens as $mensagem)
         <tr>
-            <td>{{ $mensagem->user->name }}</td>
-            <td>{{ $mensagem->titulos }}</td>
-            <td>{{ $mensagem->mensagem }}</td>
-            <td>
+            <td>{{$mensagem->user->name}}</td>
+            <td>{{$mensagem->titulo}}</td>
+            <td>{{$mensagem->mensagem}}</td>
+            <td> 
                 @if($mensagem->topicos)
                 @foreach($mensagem->topicos as $topico)
-                <div>{{ $topico->topico}}</div>
+                <div>{{$topico->topico}}</div>
                 @endforeach
                 @endif
             </td>
             <td>
-                <a href="{{route('mensagem.edit', $mensagem->id)}}" class="button">
+                <a href="{{route('mensagem.edit',$mensagem->id)}}" class="button">
                     Editar
                 </a>
             </td>
             <td>
-                <form action="POST" action="{{ route('mensagem.destroy' , $mensagem->id)}}" onsubmit="return confirnm('tem certeza?'); ">
+                <form method="POST" action="{{route('mensagem.destroy',$mensagem->id)}}" onsubmit="return confirm('Tem certeza?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="button">

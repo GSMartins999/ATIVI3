@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('topicos', function (Blueprint $table) {
+        Schema::create('team_user', function (Blueprint $table) {
             $table->id();
-            $table->string('topico');
+            $table->foreignId('team_id');
+            $table->foreignId('user_id');
+            $table->string('role')->nullable();
             $table->timestamps();
+
+            $table->unique(['team_id', 'user_id']);
         });
     }
 
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topicos');
+        Schema::dropIfExists('team_user');
     }
 };

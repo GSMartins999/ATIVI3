@@ -6,28 +6,27 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     /**
      * Run the migrations.
-     * 
+     *
      * @return void
      */
-    public function up ()
+    public function up()
     {
-        Schema::create('mensagem_topicos', function (Blueprint $table){
-            $table->id ();
+        Schema::create('mensagem_topico', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('mensagem_id')->constrained()
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('topico_id')->constrained()
+            $table->ForeignId('topico_id')->constrained()
                 ->onUpdate('cascade')->onDelete('cascade');
-                $table->unique(['mensagem_id', 'topico_id']);
-                $table->timestamps();
+            $table->unique(['mensagem_id', 'topico_id']);
+            $table->timestamps();
         });
     }
 
     /**
-     * reverse the migration.
-     * 
+     * Reverse the migrations.
+     *
      * @return void
      */
     public function down()
