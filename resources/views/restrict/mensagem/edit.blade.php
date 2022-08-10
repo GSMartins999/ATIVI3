@@ -28,11 +28,15 @@
             @foreach($topicos as $topico)
             <input type="checkbox" id="top{{$topico->id}}" value="{{$topico->id}}" name="topico[]" @foreach($mensagem->topicos as $msgTopico)
             @if($topico->id == $msgTopico->id) checked @endif
-            @endforeach
-            />
+            @endforeach/>
             <label for="top{{$topico->id}}">{{$topico->topico}}</label>
             @endforeach
         </div>
+    </div>
+    <div>
+     <label for="img">Imagem</label>
+     <input type="file" name="imagem" id="img" accept="image/*" required />
+     <img scr="{{Storage::url($mensagem->imagem)}}" alt="{{$mensagem->titulo}}" class="showImg" />
     </div>
     <button type="submit" class="button">Salvar</button>
 </form>
