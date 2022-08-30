@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Mensagem;
 use App\Models\Topico;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+
 
 class MensagemController extends Controller
 {
@@ -48,14 +48,15 @@ class MensagemController extends Controller
             'imagem' => 'image'
         ]);
         if ($validated) {
+            //print_r($request->get('topico));
             $mensagem = new Mensagem();
             $mensagem-> user_id = Auth::user()->id;
             $mensagem->titulo = $request->get('titulo');
             $mensagem->mensagem = $request->get('mensagem');
             //$name = $request->file('imagem')->getClientOriginalName();
             //$path = $request->file('imagem')->storeAs("public/img", $name);
-            $name = $request->file('imagem')->store('','s3');
-            Storage::disk('s3')->setVisibility($name, 'public');
+            $name = $request -> file('imagem')-> store('', 's3');
+            Storage::disk('s3') -> setVisibility($name, 'public');
             $path = Storage::disk('s3')->url($name);
             $mensagem->imagem = $path;
             $mensagem->save();
@@ -107,10 +108,10 @@ class MensagemController extends Controller
             $mensagem->mensagem = $request->get('mensagem');
             //$name = $request->file('imagem')->getClientOriginalName();
             //$path = $request->file('imagem')->storeAs("public/img", $name);
-            $name = $request->file('imagem')->store('','s3');
-            Storage::disk('s3')->setVisibility($name, 'public');
+            $name = $request -> file('imagem')-> store('', 's3');
+            Storage::disk('s3') -> setVisibility($name, 'public');
             $path = Storage::disk('s3')->url($name);
-            $mensagem->imagem = $path;
+            $mensagem->imagem =$path;
             $mensagem->save();
             $mensagem->topicos()->sync($request->get('topico'));
             return redirect('mensagem');
